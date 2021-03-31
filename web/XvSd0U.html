@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>XiyouLinuxGroup免试题第三关</title>
+    <link rel="icon" href="img/xiyoulinux.png" type="image/x-icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #e7f0f1;
+        }
+
+        .content {
+            position: relative;
+            /* bottom: 500px; */
+            width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            animation: myrow 3s;
+        }
+
+        @keyframes myrow {
+            0% {
+                bottom: 600px;
+                opacity: 0;
+            }
+            100% {
+                bottom: 0px;
+                opacity: 1;
+            }
+        }
+
+        .container_img {
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .container_img img {
+            width: 300px;
+            height: 300px;
+            margin-bottom: 20px;
+        }
+
+        .container_img p {
+            text-align: left;
+
+        }
+
+        .container {
+            margin: 0 auto;
+            width: 600px;
+            text-align: left;
+        }
+
+        .layui-form-item,
+        .layui-form-item {
+            display: inline-block;
+        }
+
+        .layui-textarea {
+            width: 400px;
+        }
+
+        .layui-btn {
+            float: right;
+            width: 190px;
+            height: 32px;
+            line-height: 32px;
+            border: 0px;
+            color: white;
+            background: #ff8140;
+            border: 1px solid #f77c3d;
+            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+        }
+    </style>
+</head>
+
+<body>
+<div class="content">
+    <div class="container_img">
+        <img src="img/question3.png" alt="">
+        <p>勇士你好，欢迎来到第三关。在遥远的 Linux 星云中出现了一个简单而又复杂的图腾，人类联邦中没有人知道它的用处，但是婷婷学姐是个例外，
+            原因是婷婷有一天晚上在梦中得到了一段看似非常有用的信息：聪明的人可以把此矩阵转化为另一个矩阵，那就是通往明天的钥匙，绿色节点无效，剩余三色貌似与树有关。
+            输入答案时白色可用 1 代替，绿色可用 2 代替，黑色可用 3 代替，红色可用 4 代替。例如: 当前的图片可以表示为 122332214
+        </p>
+    </div>
+    <div class="container">
+        <form class="layui-form">
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">答案</label>
+                <div class="layui-input-block">
+                        <textarea name="ans" lay-verify="required" placeholder="请输入内容"
+                                  class="layui-textarea"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="submit">立即提交</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="/resources/layui/layui.all.js"></script>
+<script>
+    layui.form.on("submit(submit)", function (formdata) {
+        layui.$.ajax({
+            url: "/check_question3",
+            data: formdata.field,
+            type: "post",
+            dataType: "json",
+            success: function (json) {
+                if (json.code == "1") {
+                    layui.layer.msg(json.message);
+                    setTimeout(function (){
+                        window.location.href = json.redirect_url;
+                    }, 3000);
+                } else {
+                    layui.layer.msg(json.message);
+                }
+            }
+        })
+        return false;
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>XiyouLinuxGroup免试题第四关</title>
+    <link rel="icon" href="img/xiyoulinux.png" type="image/x-icon">
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    body {
+        background-color: #e7f0f1;
+
+    }
+
+    h3 {
+        text-align: center;
+    }
+
+    .main-body {
+        position: relative;
+        width: 100%;
+    }
+
+    .img-3 {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .img_3 {
+        padding: 0 10px;
+    }
+
+    #username {
+        height: 30px;
+        width: 100%;
+    }
+
+    .layui-form-item {
+        width: 50%;
+        display: inline-block;
+        margin: 0 0 0 20%;
+    }
+
+    .layui-btn {
+        color: white;
+        background: #ff8140;
+        border: 1px solid #f77c3d;
+        box-shadow: 0px 1px 2px rgb(0, 0, 0, 25%);
+        height: 30px;
+        width: 100%;
+    }
+
+    .button2 {
+        margin: 0 0 0 40px;
+        display: inline-block;
+        width: 100px;
+    }
+
+    .code {
+        word-wrap: break-word;
+        word-break: break-all;
+        overflow: hidden;
+        padding: 15px 20%;
+    }
+
+    .declar {
+        padding: 0 20%;
+    }
+</style>
+
+<body>
+<div class="main-body">
+    <div class="img-3">
+        <img class="img_3" src="img/1.jpg" alt="" width="300px" height="300px">
+        <img class="img_3" src="img/2.jpg" alt="" width="280px" height="300px">
+        <img class="img_3" src="img/3.jpg" alt="" width="270px" height="300px">
+    </div>
+    <h3>他们打开了一扇通往新世界的大门……</h3>
+    <div class="code">
+        45e87286867bd11052f174312f8bb844cec756ce260ec5a34071a1fc4c06b168252a16a75a30ecdaf64f6a0dad7dbb04b11064e192d1f86086a3198b99e75acaba27c5d68acf75dc4df35edfbb0d30b70591350019602a827d97d3f3882ae9c5b191c95ef46db432c9c13a072cba0eab91209ac645a26249d2562996e8ce228b8e7bd81f8d8d44585c02d8f47854bc0618076e4969b439a7363d55a8eaf824dbade37e16ea22566a7e7c142c82b45b44bcc8d250fcc14eee586e9e267312dba3e9822e4314087fd51981a84e03074c696d5158fe6104fd35d25fd09ffb0fead4916e5aa578d92bb212bbeca0fe5e98de35e00a1787ab5e60842cfad26d68709e81dd37b6eecf9eb6f3f9b228f1acd7cc2e92c778e0243540934669de91020b9cd0321fa276f9a730e6090df05312e00457a68c9411f7ce351b2ada114a54a8cad1524d83698c1bd337d73380aadac7d96aa9e9edd00ece644cc6cdbdca962b67e234a2a6731b8b72d7248fe9686270141a364a78346c8b7615a1d6c1d7d4a84b9ed89e6d2f631a5192ea8184cdd36af1b99e94d7869d2d88ab1b7e72f2e518ceab750c5f5143f3c48214119b87f26faa8a334e622462b26d96bff14c776dbf310139fb57d417bf55bea50b3b030fb75ecd71a26c518d71808cb17ebfe34a6655227fe0eab74cb9b56a085ddc5a78c8b06d52c236618b1a3dfe7816b132ecde00
+    </div>
+    <div class="oa-container">
+        <form class="layui-form">
+            <div class="layui-form-item">
+                <input type="text" id="username" lay-verify="required" name="ans" placeholder="请输入"
+                       autocomplete="off" class="layui-input">
+            </div>
+            <div class="button2" class="layui-form-item">
+                <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="submit">提交</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="declar">
+    <br>
+    版权声明：
+    <br>
+    图片引用自
+    <br>
+    https://commons.wikimedia.org/wiki/File:Ronald_L_Rivest_photo.jpg
+    <br>
+    https://commons.wikimedia.org/wiki/File:Adi_Shamir_Royal_Society.jpg
+    <br>
+    https://commons.wikimedia.org/wiki/File:Len-mankin-pic.jpg
+    <br>
+
+    <a rel="license" href="https://licensebuttons.net/l/by-sa/4.0/88x31.png">
+        <img alt="知识共享许可协议" style="border-width:0"
+             src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"/></a><br/>
+    本题目采用<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a>进行许可。
+</div>
+
+<script src="/resources/layui/layui.all.js"></script>
+<script>
+    layui.form.on("submit(submit)", function (formdata) {
+        layui.$.ajax({
+            url: "/check_question4",
+            data: formdata.field,
+            type: "post",
+            dataType: "json",
+            success: function (json) {
+                if (json.code == "1") {
+                    layui.layer.msg(json.message);
+                    setTimeout(function () {
+                        window.location.href = json.redirect_url;
+                    }, 3000);
+                } else {
+                    layui.layer.msg(json.message);
+                }
+            }
+        })
+        return false;
+    })
+</script>
+</body>
+</html>
