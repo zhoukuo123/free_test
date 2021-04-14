@@ -40,7 +40,7 @@ public class RequestStatisticListener implements ServletContextListener, Servlet
     public void requestInitialized(ServletRequestEvent sre) {
         HttpServletRequest req = (HttpServletRequest) sre.getServletRequest();
         String url = req.getRequestURL().toString();
-        if (url.endsWith("/rt")) {
+        if (url.endsWith("/rt") || url.contains("img") || url.contains("file") || url.contains("lay")) {
             return;
         }
 
